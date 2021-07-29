@@ -21,7 +21,7 @@ const router = createRouter({
         { path: '/', component: Landing },
         { path: '/products', component: ProductList },
         { path: '/add-product', component: AddProduct },
-        { path: '/edit-product/:id', component: EditProduct },
+        { path: '/products/:id', component: EditProduct },
 
         //{ path: '/auth', component: UserAuth, meta: { requiresUnauth: true } },
         { path: '/:notFound(.*)', component: NotFound },
