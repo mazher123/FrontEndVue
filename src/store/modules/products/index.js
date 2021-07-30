@@ -2,10 +2,10 @@ import mutations from './mutations.js';
 import getters from './getters.js';
 import actions from './actions.js';
 
-
+//const namespaced = true;
 
 export default {
-    namespace: true,
+    namespaced: true,
     state() {
 
         return {

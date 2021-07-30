@@ -1,6 +1,12 @@
 <template>
   <section>
-    <div class="controls"></div>
+
+    <base-card>
+
+    <div class="controls">
+       <base-button link  to="/add-product"> Add Product </base-button>
+    </div>
+    <h2>Products</h2>
 
     <ul v-if="hasProducts">
       <product-item
@@ -17,6 +23,8 @@
     <h3 v-else>
       No products found
     </h3>
+
+    </base-card>
   </section>
 </template>
 
@@ -29,12 +37,27 @@ export default {
   computed: {
     allProducts() {
       console.log("Fsdf");
-      return this.$store.getters.products;
+      return this.$store.getters['products/products'];
+     
     },
     hasProducts() {
       console.log("Fsdf");
-      return this.$store.getters.hasproducts;
+      return this.$store.getters['products/hasproducts'];
     },
   },
 };
 </script>
+
+
+<style scoped>
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+}
+</style>

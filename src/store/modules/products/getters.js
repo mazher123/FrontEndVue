@@ -1,7 +1,8 @@
 export default {
 
     products(state) {
-        console.log("am here");
+        //console.log("am here");
+
         return state.product;
     },
 

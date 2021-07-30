@@ -12,7 +12,7 @@ import Landing from './pages/home/Landing.vue';
 import ProductList from './pages/home/ProductList.vue';
 import AddProduct from './pages/home/AddProduct.vue';
 import EditProduct from './pages/home/EditProduct.vue';
-//import UserAuth from './pages/auth/UserAuth.vue';
+import UserAuth from './pages/auth/UserAuth.vue';
 //import store from './store/index.js';
 
 const router = createRouter({
@@ -23,7 +23,7 @@ const router = createRouter({
         { path: '/add-product', component: AddProduct },
         { path: '/products/:id', component: EditProduct },
 
-        //{ path: '/auth', component: UserAuth, meta: { requiresUnauth: true } },
+        { path: '/auth', component: UserAuth, meta: { requiresUnauth: true } },
         { path: '/:notFound(.*)', component: NotFound },
     ],
 });
