@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="submitForm">
     <div class="form-control" :class="{ invalid: !title.isValid }">
       <label for="title"> Title</label>
       <input

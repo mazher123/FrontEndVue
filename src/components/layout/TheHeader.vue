@@ -12,14 +12,12 @@
           <router-link to="/add-product">Add Products</router-link>
         </li>
         <li v-if="isLoggedIn">
-          <router-link to="/requests">Requests</router-link>
+          <base-button @click="logout">Logout</base-button>
         </li>
         <li v-else>
           <router-link to="/auth">Login</router-link>
         </li>
-        <li v-if="isLoggedIn">
-          <base-button @click="logout">Logout</base-button>
-        </li>
+     
       </ul>
     </nav>
   </header>
@@ -28,15 +26,15 @@
 <script>
 export default {
   computed: {
-    // isLoggedIn() {
-    //   return this.$store.getters.isAuthenticated;
-    // }
+    isLoggedIn() {
+      return this.$store.getters['auth/isAuthenticated'];
+    }
   },
   methods: {
-    // logout() {
-    //   this.$store.dispatch('logout');
-    //   this.$router.replace('/');
-    // }
+    logout() {
+      this.$store.dispatch('auth/logout');
+      this.$router.replace('/');
+    }
   }
 }
 </script>

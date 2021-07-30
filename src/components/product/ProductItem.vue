@@ -5,7 +5,7 @@
         <img :src="image" alt="image" style="width:100%" />
       </div>
       <div class="product-content">
-        <h4>Name : {{ title }}</h4>
+        <h4>Title : {{ title }}</h4>
         <h4>Price : {{ price }}</h4>
         <p><b>Description:</b> {{ description }}</p>
       </div>
@@ -13,9 +13,11 @@
 
     <div>
       <div class="actions">
-        <base-button link mode="outline" :to="productEdit"> Edit </base-button>
+        <base-button link mode="outline" @click="productEdit">
+          Edit
+        </base-button>
 
-        <base-button link :to="productEdit"> Delete </base-button>
+        <base-button @click="deleteProduct"> Delete </base-button>
       </div>
     </div>
   </li>
@@ -24,9 +26,16 @@
 <script>
 export default {
   props: ["id", "title", "price", "description", "image"],
-  computed: {
+  emits: ["delete-data", "edit-data"],
+  computed: {},
+  methods: {
+    deleteProduct() {
+      console.log("inside function");
+      this.$emit("delete-data", this.id);
+    },
     productEdit() {
-      return this.$route.path + "/" + this.id;
+       console.log("inside edit function");
+      this.$emit("edit-data", this.id);
     },
   },
 };
@@ -40,11 +49,14 @@ export default {
 }
 .product-image {
   width: 20%;
+
+  margin: 20px;
 }
 
 .product-content {
   width: 80%;
   text-align: initial;
+  margin: 14px;
 }
 li {
   margin: 1rem 0;

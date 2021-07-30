@@ -10,7 +10,7 @@
       <form @submit.prevent="submitForm">
         <div v-if="mode === 'signup'" class="form-control">
           <label for="email">Name</label>
-          <input type="email" id="email" v-model.trim="name" />
+          <input type="text" id="name" v-model.trim="name" />
         </div>
         <div class="form-control">
           <label for="email">E-Mail</label>
@@ -82,15 +82,20 @@ export default {
             email: this.email,
             password: this.password,
           };
-          await this.$store.dispatch('login', actionPayload);
+          await this.$store.dispatch('auth/login', actionPayload);
+
         } else {
           let actionPayload = {
+            name:this.name,
             email: this.email,
             password: this.password,
           };
-          await this.$store.dispatch('signup', actionPayload);
+          await this.$store.dispatch('auth/signup', actionPayload);
+
         }
-        const redirectUrl = "/" + (this.$route.query.redirect || "coaches");
+
+
+        const redirectUrl = "/" ;
         this.$router.replace(redirectUrl);
       } catch (err) {
         this.error = err.message || "Failed to authenticate, try later.";

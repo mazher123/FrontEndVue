@@ -45,9 +45,13 @@
 <script>
 export default {
   emits: ["edit-data"],
-  props: ["title2", "description2", "price2", "image2"],
+  props: ["id2", "title2", "description2", "price2", "image2"],
   data() {
-    return{
+    return {
+      id: {
+        val: this.$props.id2,
+        isValid: true,
+      },
       title: {
         val: this.$props.title2,
         isValid: true,
@@ -100,6 +104,7 @@ export default {
       }
 
       const formData = {
+        id: this.id.val,
         title: this.title.val,
         description: this.description.val,
         price: this.price.val,

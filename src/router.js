@@ -13,29 +13,29 @@ import ProductList from './pages/home/ProductList.vue';
 import AddProduct from './pages/home/AddProduct.vue';
 import EditProduct from './pages/home/EditProduct.vue';
 import UserAuth from './pages/auth/UserAuth.vue';
-//import store from './store/index.js';
+import store from './store/index.js';
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         { path: '/', component: Landing },
-        { path: '/products', component: ProductList },
-        { path: '/add-product', component: AddProduct },
-        { path: '/products/:id', component: EditProduct },
+        { path: '/products', component: ProductList, meta: { requiresAuth: true }, },
+        { path: '/add-product', component: AddProduct, meta: { requiresAuth: true }, },
+        { path: '/products/:id', component: EditProduct, meta: { requiresAuth: true }, },
 
         { path: '/auth', component: UserAuth, meta: { requiresUnauth: true } },
         { path: '/:notFound(.*)', component: NotFound },
     ],
 });
 
-// router.beforeEach(function(to, _, next) {
-//     if (to.meta.requiresAuth && !store.getters.isAuthenticated) {
-//         next('/auth');
-//     } else if (to.meta.requiresUnauth && store.getters.isAuthenticated) {
-//         next('/coaches');
-//     } else {
-//         next();
-//     }
-// });
+router.beforeEach(function(to, _, next) {
+    if (to.meta.requiresAuth && !store.getters['auth/isAuthenticated']) {
+        next('/auth');
+    } else if (to.meta.requiresUnauth && store.getters['auth/isAuthenticated']) {
+        next('/');
+    } else {
+        next();
+    }
+});
 
 export default router;
