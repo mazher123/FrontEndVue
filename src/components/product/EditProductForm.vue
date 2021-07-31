@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="submitForm">
+  <form @submit.prevent="submitForm2">
     <div class="form-control" :class="{ invalid: !title.isValid }">
       <label for="title"> Title</label>
       <input
@@ -38,7 +38,7 @@
         @change="onFileChange($event)"
       />
     </div>
-    <base-button> Save </base-button>
+    <base-button> Update </base-button>
   </form>
 </template>
 
@@ -66,7 +66,7 @@ export default {
         isValid: true,
       },
       image: {
-        val: null,
+        val: this.$props.image2,
         isValid: true,
       },
 
@@ -96,13 +96,14 @@ export default {
         this.formIsValid = false;
       }
     },
-    submitForm() {
+    submitForm2() {
       this.validateForm();
 
       if (!this.formIsValid) {
         return;
       }
 
+  console.log("hhfghh");
       const formData = {
         id: this.id.val,
         title: this.title.val,

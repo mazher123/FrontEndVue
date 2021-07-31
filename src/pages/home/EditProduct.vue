@@ -1,14 +1,13 @@
 <template>
   <section>
     <base-card>
-      <h2>Product Add</h2>
+      <h2>Product Update</h2>
       <edit-form
-        @save-data="saveData"
         :id2="this.product[0].id"
         :title2="this.product[0].title"
         :price2="this.product[0].price"
         :description2="this.product[0].description"
-        :image2="this.image"
+        :image2="this.product[0].image"
         @edit-data="editData"
       ></edit-form>
     </base-card>
@@ -21,10 +20,7 @@ import EditForm from "../../components/product/EditProductForm.vue";
 export default {
   data() {
     return {
-      title: "ghfgh",
-      description: "fgdfgdfgdfg",
-      price: "4234",
-      image: "gdfgdfgdfgd",
+
       product:[]
     };
   },
@@ -47,7 +43,7 @@ export default {
     },
 
     editData(data){
-        console.log("insode function");
+        console.log("insode update function");
      this.$store.dispatch("products/updateProducts", data);
      this.$router.replace("/products");
     }

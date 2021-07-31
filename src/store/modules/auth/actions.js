@@ -24,7 +24,7 @@ export default {
         let url = "http://localhost:8000/api/login";
 
         if (mode === "signup") {
-            // formData.append("name", payload.name);
+            formData.append("name", payload.name);
             url = "http://localhost:8000/api/register";
         }
         const response = await fetch(url, {

@@ -33,7 +33,7 @@
       <label for="title"> Image</label>
       <input
         type="file"
-        accept="image/*"
+        accept="image/gif, image/jpeg , image/png , image/jpg "
         id="image"
         @change="onFileChange($event)"
       />

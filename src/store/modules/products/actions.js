@@ -119,25 +119,24 @@ export default {
     },
 
     async updateProducts(context, payload) {
-        console.log("inside action");
+        // console.log("inside action");
         console.log(payload);
 
         let formData = new FormData();
         formData.append("title", payload.title);
         formData.append("price", payload.price);
         formData.append("description", payload.description);
-        if (payload.image) {
-            formData.append("image", payload.image);
-        }
+
+        formData.append("image", payload.image);
 
         const Token = context.rootGetters["auth/token"];
         console.log(context);
-        const url = "http://localhost:8000/api/products/" + payload.id;
+        const url = "http://localhost:8000/api/update-products/" + payload.id;
         const response = await fetch(url, {
-            method: "put",
+            method: "post",
             headers: {
                 Authorization: "bearer" + Token,
-                "Content-Type": "application/json",
+                // "Content-Type": "x-www-form-control",
             },
             body: formData
         });
